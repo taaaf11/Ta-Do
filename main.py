@@ -10,7 +10,7 @@ def main(page: ft.Page):
     page.window_width = 500
     page.window_resizable = False
     
-    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+    # page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
     def create_todo(e):
@@ -20,20 +20,33 @@ def main(page: ft.Page):
         page.dialog.on_dismiss = lambda _: home_view.add_todo(add_todo_dialog.get_text())
         page.update()
     
+    # we don't our todo's to be center aligned, but we want contents of other 'pages'
+    # to be vertically center aligned, so this is the solution
+    old_page_vertical_alignment = page.vertical_alignment
+    
     def navigate_to_page(e):
         selected_page = e.control.selected_index
         if selected_page == 0:
             home_view.visible = True
             settings_view.visible = False
             about_view.visible = False
+            
+            # Read comments above for variable old_page_vertical_alignment
+            page.vertical_alignment = old_page_vertical_alignment
         elif selected_page == 1:
             home_view.visible = False
             settings_view.visible = True
             about_view.visible = False
+            
+            # Read comments above for variable old_page_vertical_alignment
+            page.vertical_alignment = ft.MainAxisAlignment.CENTER
         elif selected_page == 2:
             home_view.visible = False
             settings_view.visible = False
             about_view.visible = True
+            
+            # Read comments above for variable old_page_vertical_alignment
+            page.vertical_alignment = ft.MainAxisAlignment.CENTER
         
         page.update()
 
