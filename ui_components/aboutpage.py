@@ -2,7 +2,7 @@ import flet as ft
 
 
 class AboutPage(ft.Column):
-    def __init__(self, author_name, *args, **kwargs):
+    def __init__(self, author_name: str, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.author_name = author_name
         self.controls = [

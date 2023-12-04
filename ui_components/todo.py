@@ -2,7 +2,7 @@ import flet as ft
 
 
 class Todo(ft.Row):
-    def __init__(self, content, done: bool = False, *args, **kwargs):
+    def __init__(self, content: str, done: bool = False, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.content = content
         self.done = done
