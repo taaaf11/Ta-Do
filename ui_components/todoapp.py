@@ -13,6 +13,4 @@ class TodoApp(ft.UserControl):
         self.update()
 
     def build(self):
-        return ft.Column([
-            self.todos
-        ])
+        return self.todos

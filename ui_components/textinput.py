@@ -1,7 +1,7 @@
 import flet as ft
 
 
-class InputTodo(ft.TextField):
+class TextInput(ft.TextField):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.border_radius = 20
