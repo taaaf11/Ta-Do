@@ -9,7 +9,8 @@ class TodoList(ft.ListView):
         self.controls = []
 
     def add_todo(self, todo: Todo):
-        self.controls.append(todo)
+        if not len(todo.content) == 0:
+            self.controls.append(todo)
         self.update()
     
     @staticmethod

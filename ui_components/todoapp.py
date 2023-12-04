@@ -1,7 +1,6 @@
 from .todolist import TodoList
 from .todo import Todo
 import flet as ft
-import os
 
 
 class TodoApp(ft.UserControl):
