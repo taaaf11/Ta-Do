@@ -10,7 +10,7 @@ class AboutPage(ft.Column):
             ft.Text(self.author_name, size=30)
         ]
         self.alignment = ft.MainAxisAlignment.CENTER
-        self.horizontal_alignment = ft.MainAxisAlignment.CENTER
+        self.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     
     def build(self):
         return self

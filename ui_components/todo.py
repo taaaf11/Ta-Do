@@ -12,7 +12,7 @@ class Todo(ft.Row):
         self.vertical_alignment = ft.MainAxisAlignment.CENTER
     
     def get_data(self):  # an 'interface' to get values of Todo instance
-        return (self.content, self.done)
+        return (self.checkbox.label, self.checkbox.value)
 
     def build(self):
         return self

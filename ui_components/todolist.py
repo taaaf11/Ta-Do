@@ -1,15 +1,12 @@
 from .todo import Todo
 from typing import TextIO
 import flet as ft
-import os
 
 
 class TodoList(ft.ListView):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.controls = []
-        if os.path.isfile('todo_data.txt'):
-            self.read_from_file()
 
     def add_todo(self, todo: Todo):
         self.controls.append(todo)
@@ -27,31 +24,41 @@ class TodoList(ft.ListView):
                 eof = True
             if line == '': # line is empty
                 continue
+            if line[-1] == '\n':
+                lines.append(line[:-1])
+                continue
             lines.append(line)
         
         return lines
     
     def read_from_file(self):
-        file = open('todo_data.txt', 'r')
+        try:
+            file = open('todo_data.txt', 'r')
+        except:
+            return
+        
         lines_of_file = self._into_lines(file)
         
         for line in lines_of_file:
             line_contents = line.split('/')  # content in each line is like this
-            if line_contents[0] == '0':  # state of the checkbox
-                self.controls.append(Todo(line_contents))  # default value of second arg is False
+            content, done = line_contents[1], line_contents[0]
+            
+            if done == '0':  # state of the checkbox
+                self.controls.append(Todo(content))  # default value of second arg is False
             else:  # it is '1'
-                self.controls.append(Todo(line_contents, True))
+                self.controls.append(Todo(content, True))
                 
         self.update()
     
     def save_to_file(self):
-        file = open('todo_data.txt', 'a')
+        file = open('todo_data.txt', 'w')
         for item in self.controls:
             content, done = item.get_data()
-            if done:  # checkbox is true
-                file.write(f'0/{content}')
+            if done == True:  # checkbox is true
+                file.write(f'1/{content}\n')
+                continue
             else:  # is false
-                file.write(f'1/{content}')
+                file.write(f'0/{content}\n')
 
     def build(self):
         return self

@@ -4,6 +4,7 @@ import flet as ft
 
 def main(page: ft.Page):
     page.title = 'Ta-Do'
+    page.theme = ft.Theme(color_scheme_seed='#01666f')  # pine green
     page.theme_mode = 'dark'
     
     page.window_height = 400
@@ -74,10 +75,14 @@ def main(page: ft.Page):
     page.floating_action_button = ft.FloatingActionButton(icon=ft.icons.ADD_SHARP, on_click=create_todo, shape=ft.CircleBorder())
 
     home_view = TodoApp()
-    settings_view = SettingsPage(home_view, visible=False)
+    settings_view = SettingsPage(home_view, page, visible=False)
     about_view = AboutPage(author_name='Muhammad Altaaf', visible=False)
 
     page.add(home_view, settings_view, about_view)
+    
+    # read from file, couldn't do any better
+    home_view.todos.read_from_file()
+    page.update()
 
 
 if __name__ == '__main__':
