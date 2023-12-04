@@ -1,4 +1,4 @@
-from . import TodoList
+from .todolist import TodoList
 from .todo import Todo
 import flet as ft
 

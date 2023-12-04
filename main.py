@@ -1,4 +1,4 @@
-from ui_components import TodoApp, TodoInputDialog
+from ui_components import TodoApp, TodoInputDialog, SettingsPage, AboutPage
 import flet as ft
 
 
@@ -6,10 +6,11 @@ def main(page: ft.Page):
     page.title = 'Ta-Do'
     page.theme_mode = 'dark'
     
-    page.window_height = 600
+    page.window_height = 400
     page.window_width = 500
     page.window_resizable = False
     
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
     def create_todo(e):
@@ -18,6 +19,23 @@ def main(page: ft.Page):
         page.dialog.open = True
         page.dialog.on_dismiss = lambda _: home_view.add_todo(add_todo_dialog.get_text())
         page.update()
+    
+    def navigate_to_page(e):
+        selected_page = e.control.selected_index
+        if selected_page == 0:
+            home_view.visible = True
+            settings_view.visible = False
+            about_view.visible = False
+        elif selected_page == 1:
+            home_view.visible = False
+            settings_view.visible = True
+            about_view.visible = False
+        elif selected_page == 2:
+            home_view.visible = False
+            settings_view.visible = False
+            about_view.visible = True
+        
+        page.update()
 
     page.appbar = ft.AppBar(title=ft.Text('Ta-Do'))
 
@@ -25,15 +43,28 @@ def main(page: ft.Page):
         ft.NavigationDrawerDestination(
             icon=ft.icons.HOME_OUTLINED,
             label='Home',
-            selected_icon=ft.icons.HOME_ROUNDED
+            selected_icon=ft.icons.HOME_SHARP
+        ),
+        ft.NavigationDrawerDestination(
+            icon=ft.icons.SETTINGS_OUTLINED,
+            label='Settings',
+            selected_icon=ft.icons.SETTINGS_SHARP
+        ),
+        ft.Divider(thickness=2),
+        ft.NavigationDrawerDestination(
+            icon=ft.icons.LIGHTBULB_OUTLINE,
+            label='About',
+            selected_icon=ft.icons.LIGHTBULB_SHARP
         )
-    ])
+    ], selected_index=0, on_change=navigate_to_page)
 
-    page.floating_action_button = ft.FloatingActionButton(icon=ft.icons.ADD_ROUNDED, on_click=create_todo)
+    page.floating_action_button = ft.FloatingActionButton(icon=ft.icons.ADD_SHARP, on_click=create_todo, shape=ft.CircleBorder())
 
     home_view = TodoApp()
+    settings_view = SettingsPage(home_view, visible=False)
+    about_view = AboutPage(author_name='Muhammad Altaaf', visible=False)
 
-    page.add(home_view)
+    page.add(home_view, settings_view, about_view)
 
 
 if __name__ == '__main__':
