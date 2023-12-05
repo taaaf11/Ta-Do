@@ -1,3 +1,11 @@
+#
+# App Name: Ta-Do
+# Author: Muhammad Altaaf
+# Contact email: taafuuu@gmail.com
+# Description: A simple to-do app.
+#
+
+
 from ui_components import TodoApp, TodoInputDialog, SettingsPage, AboutPage
 import flet as ft
 
