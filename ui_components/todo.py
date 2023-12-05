@@ -8,7 +8,7 @@ class Todo(ft.Row):
         self.done = done
         self.checkbox = ft.Checkbox(label=self.content, value=self.done, on_change=self.on_checkbox_change)
         self.controls = [self.checkbox]
-        self.alignment = ft.MainAxisAlignment.CENTER  # horizontal
+        self.alignment = ft.MainAxisAlignment.START  # horizontal
         self.vertical_alignment = ft.CrossAxisAlignment.CENTER
     
     def on_checkbox_change(self, e) -> None:
