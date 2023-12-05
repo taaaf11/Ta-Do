@@ -80,7 +80,7 @@ def main(page: ft.Page):
 
     page.add(home_view, settings_view, about_view)
     
-    # read from file, couldn't do any better
+    # get data from file, couldn't do any better
     home_view.todos.read_from_file()
     page.update()
 
