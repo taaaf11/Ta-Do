@@ -1,5 +1,4 @@
 from .textinput import TextInput
-from .button import Button
 from .todo import Todo
 import flet as ft
 
@@ -11,7 +10,7 @@ class TodoInputDialog(ft.AlertDialog):
         self.text_field = TextInput()
         self.content = self.text_field
 
-    def get_text(self):
+    def get_todo(self) -> Todo:
         return Todo(self.text_field.value)
 
     def build(self):

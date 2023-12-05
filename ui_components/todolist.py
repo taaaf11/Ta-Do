@@ -8,13 +8,16 @@ class TodoList(ft.ListView):
         super().__init__(*args, **kwargs)
         self.controls = []
 
-    def add_todo(self, todo: Todo):
+    def add_todo(self, todo: Todo) -> None:
         if not len(todo.content) == 0:
             self.controls.append(todo)
+        for atodo in self.controls:
+            if atodo.done:  # it is true, i.e. todo is completed
+                self.controls.remove(atodo)  # prune to-do's
         self.update()
     
     @staticmethod
-    def _into_lines(file: TextIO):
+    def _into_lines(file: TextIO) -> list:  # put lines of file into a list
         eof = False
         lines = list()
 
@@ -32,13 +35,14 @@ class TodoList(ft.ListView):
         
         return lines
     
-    def read_from_file(self):
+    def read_from_file(self) -> None:
         try:
             file = open('todo_data.txt', 'r')
         except:
             return
         
         lines_of_file = self._into_lines(file)
+        file.close()
         
         for line in lines_of_file:
             line_contents = line.split('/')  # content in each line is like this
@@ -51,7 +55,7 @@ class TodoList(ft.ListView):
                 
         self.update()
     
-    def save_to_file(self):
+    def save_to_file(self) -> None:
         file = open('todo_data.txt', 'w')
         for item in self.controls:
             content, done = item.get_data()
@@ -60,6 +64,7 @@ class TodoList(ft.ListView):
                 continue
             else:  # is false
                 file.write(f'0/{content}\n')
+        file.close()
 
     def build(self):
         return self

@@ -18,7 +18,7 @@ def main(page: ft.Page):
         add_todo_dialog = TodoInputDialog()
         page.dialog = add_todo_dialog
         page.dialog.open = True
-        page.dialog.on_dismiss = lambda _: home_view.add_todo(add_todo_dialog.get_text())
+        page.dialog.on_dismiss = lambda _: home_view.add_todo(add_todo_dialog.get_todo())
         page.update()
     
     # we don't our todo's to be center aligned, but we want contents of other 'pages'

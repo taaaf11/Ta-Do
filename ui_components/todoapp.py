@@ -8,7 +8,7 @@ class TodoApp(ft.UserControl):
         super().__init__(*args, **kwargs)
         self.todos = TodoList()
 
-    def add_todo(self, todo: Todo):
+    def add_todo(self, todo: Todo) -> None:
         self.todos.add_todo(todo)
         self.todos.save_to_file()
         self.update()

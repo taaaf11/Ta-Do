@@ -1,12 +1,10 @@
-from .todoapp import TodoApp
 from .button import Button
 import flet as ft
 
+
 class SettingsPage(ft.Column):
-    def __init__(self, app_instance: TodoApp, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.app_instance = app_instance
-        self.current_theme_mode = 'dark'
         self.theme_mode_button = Button(icon=ft.icons.LIGHT_MODE_SHARP, text='Light mode', on_click=self.switch_theme_mode)
         self.controls = [
             self.theme_mode_button
@@ -14,7 +12,7 @@ class SettingsPage(ft.Column):
         self.alignment = ft.MainAxisAlignment.CENTER
         self.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     
-    def switch_theme_mode(self, e):
+    def switch_theme_mode(self, e) -> None:
         if self.page.theme_mode == 'dark':
             self.page.theme_mode = 'light'
             
