@@ -13,18 +13,18 @@ class SettingsPage(ft.Column):
         self.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     
     def switch_theme_mode(self, e) -> None:
-        if self.page.theme_mode == 'dark':
-            self.page.theme_mode = 'light'
+        if self.page.theme_mode == ft.ThemeMode.DARK:
+            self.page.theme_mode = ft.ThemeMode.LIGHT
             
             # change button accordingly
-            self.theme_mode_button.icon = ft.icons.DARK_MODE_SHARP
+            self.theme_mode_button.icon = ft.Icon(ft.icons.DARK_MODE_SHARP)
             self.theme_mode_button.text = 'Dark mode'
             self.page.update()
         else:
-            self.page.theme_mode = 'dark'
+            self.page.theme_mode = ft.ThemeMode.DARK
             
             # change button accordingly
-            self.theme_mode_button.icon = ft.icons.LIGHT_MODE_SHARP
+            self.theme_mode_button.icon = ft.Icon(ft.icons.LIGHT_MODE_SHARP)
             self.theme_mode_button.text = 'Light mode'
             self.page.update()
     

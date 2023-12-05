@@ -5,7 +5,7 @@ import flet as ft
 def main(page: ft.Page):
     page.title = 'Ta-Do'
     page.theme = ft.Theme(color_scheme_seed='#01666f')  # pine green
-    page.theme_mode = 'dark'
+    page.theme_mode = ft.ThemeMode.DARK
     
     page.window_height = 400
     page.window_width = 500
@@ -86,4 +86,4 @@ def main(page: ft.Page):
 
 
 if __name__ == '__main__':
-    ft.app(target=main)
+    ft.app(target=main, view=ft.AppView.WEB_BROWSER)
