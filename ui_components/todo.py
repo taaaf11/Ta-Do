@@ -25,6 +25,7 @@ class Todo(ft.Row):
         else:                            # otherwise not
             self.delete_button.visible = False
         self.update()
+        self.page.controls[0].save_data()  # read comments in the function defined below
     
     def delete(self, e) -> None:
         # at self.page.controls[0], TodoApp() instance rests.

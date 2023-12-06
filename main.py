@@ -21,9 +21,18 @@ def main(page: ft.Page):
     
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     
+    # these two variables' values would be shared between the two very defined functions
+    add_todo_dialog = TodoInputDialog()
+    page.dialog = add_todo_dialog
+    
+    def esc_key_handle(e: ft.KeyboardEvent):
+        # when escape key is pressed, the dialog dismisses
+        # in addition, we want the value to be empty, so that the todo is not added
+        if e.key == 'Escape':
+            add_todo_dialog.text_field.value = ''  
+        page.update()
+    
     def create_todo(e):
-        add_todo_dialog = TodoInputDialog()
-        page.dialog = add_todo_dialog
         page.dialog.open = True
         page.dialog.on_dismiss = lambda _: home_view.add_todo(add_todo_dialog.get_todo())
         page.update()
@@ -31,6 +40,8 @@ def main(page: ft.Page):
     # we don't our todo's to be center aligned, but we want contents of other 'pages'
     # to be vertically center aligned, so this is the solution
     old_page_vertical_alignment = page.vertical_alignment
+    
+    page.on_keyboard_event = esc_key_handle
     
     def navigate_to_page(e):
         selected_page = e.control.selected_index

@@ -13,10 +13,12 @@ class TodoList(ft.ListView):
         if not len(todo.content) == 0:  # dialog is not empty
             self.controls.append(todo)
         self.update()
+        self.save_to_file()  # auto save
     
     def del_todo(self, todo: Todo):
         self.controls.remove(todo)
         self.update()
+        self.save_to_file()  # auto save
     
     @staticmethod
     def _into_lines(file: TextIO) -> list:  # put lines of file into a list
