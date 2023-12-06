@@ -12,6 +12,10 @@ class TodoApp(ft.UserControl):
         self.todos.add_todo(todo)
         self.todos.save_to_file()
         self.update()
+    
+    def del_todo(self, todo: Todo) -> None:
+        self.todos.del_todo(todo)
+        self.update()
 
     def build(self):
         return self.todos

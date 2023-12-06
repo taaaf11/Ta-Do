@@ -19,9 +19,8 @@ def main(page: ft.Page):
     page.window_width = 500
     page.window_resizable = False
     
-    # page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-
+    
     def create_todo(e):
         add_todo_dialog = TodoInputDialog()
         page.dialog = add_todo_dialog

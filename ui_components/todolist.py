@@ -7,13 +7,15 @@ class TodoList(ft.ListView):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.controls = []
+        self.height = 320
 
     def add_todo(self, todo: Todo) -> None:
-        if not len(todo.content) == 0:
+        if not len(todo.content) == 0:  # dialog is not empty
             self.controls.append(todo)
-        for atodo in self.controls:
-            if atodo.done:  # it is true, i.e. todo is completed
-                self.controls.remove(atodo)  # prune to-do's
+        self.update()
+    
+    def del_todo(self, todo: Todo):
+        self.controls.remove(todo)
         self.update()
     
     @staticmethod
