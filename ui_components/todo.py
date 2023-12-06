@@ -13,6 +13,9 @@ class Todo(ft.Row):
         self.delete_button = Button(icon=ft.icons.DELETE_OUTLINE, on_click=self.delete,
                                     visible=False, icon_color=ft.colors.GREY)
         
+        if self.checkbox.value:  # when read from file, checkmark-ed todo's don't show
+            self.delete_button.visible = True  # delete automatically
+        
         self.controls = [self.checkbox, self.delete_button]
         self.alignment = ft.MainAxisAlignment.SPACE_BETWEEN
         self.vertical_alignment = ft.CrossAxisAlignment.CENTER
