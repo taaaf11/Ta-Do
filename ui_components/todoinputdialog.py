@@ -8,7 +8,7 @@ class TodoInputDialog(ft.AlertDialog):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.title = ft.Text('Create a new ToDo')
-        self.text_field = TextInput()
+        self.text_field = TextInput(on_submit=self.close)  # user presses enter key
         self.content = self.text_field
         
         # self.actions expects an iterable
