@@ -34,7 +34,8 @@ def main(page: ft.Page):
     
     def create_todo(e):
         page.dialog.open = True
-        page.dialog.on_dismiss = lambda _: home_view.add_todo(add_todo_dialog.get_todo())
+        page.dialog.on_dismiss = lambda _: home_view.add_todo(add_todo_dialog.get_todo());\
+            add_todo_dialog.text_field.value = ''  # cleaning the value of box
         page.update()
     
     # we don't our todo's to be center aligned, but we want contents of other 'pages'
