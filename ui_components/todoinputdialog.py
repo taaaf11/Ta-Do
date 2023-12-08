@@ -7,7 +7,7 @@ import flet as ft
 class TodoInputDialog(ft.AlertDialog):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.title = ft.Text('Create a new ToDo')
+        self.title = ft.Text('Create a new ToDo...')
         self.text_field = TextInput(on_submit=self.close)  # user presses enter key
         self.content = self.text_field  # don't get confused. This is item(s) of the dialog
         
