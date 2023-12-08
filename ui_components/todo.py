@@ -1,4 +1,3 @@
-from .button import Button
 import flet as ft
 
 
@@ -10,10 +9,10 @@ class Todo(ft.Row):
         self.done = done
         self.checkbox = ft.Checkbox(label=self.content, value=self.done, on_change=self.on_checkbox_change)
         
-        self.rename_button = Button(icon=ft.icons.EDIT_SHARP, on_click=self.edit,
+        self.rename_button = ft.TextButton(icon=ft.icons.EDIT_SHARP, on_click=self.edit,
                                     visible=True, icon_color=ft.colors.GREY)
         
-        self.delete_button = Button(icon=ft.icons.DELETE_OUTLINE, on_click=self.delete,
+        self.delete_button = ft.TextButton(icon=ft.icons.DELETE_OUTLINE, on_click=self.delete,
                                     visible=True, icon_color=ft.colors.GREY)
         
         # if self.checkbox.value:  # when read from file, checkmark-ed todo's don't show

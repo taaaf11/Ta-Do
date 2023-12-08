@@ -1,6 +1,5 @@
 from .textinput import TextInput
 from .todo import Todo
-from .button import Button
 import flet as ft
 
 
@@ -12,8 +11,8 @@ class TodoInputDialog(ft.AlertDialog):
         self.content = self.text_field  # don't get confused. This is item(s) of the dialog
         
         # self.actions expects an iterable
-        self.actions = [Button(icon=ft.icons.CHECK_SHARP, on_click=self.close),
-                        Button(icon=ft.icons.CANCEL_SHARP, on_click=self.cancel)]
+        self.actions = [ft.TextButton(icon=ft.icons.CHECK_SHARP, on_click=self.close),
+                        ft.TextButton(icon=ft.icons.CANCEL_SHARP, on_click=self.cancel)]
         self.actions_alignment = ft.MainAxisAlignment.CENTER
 
     def get_todo(self) -> Todo:

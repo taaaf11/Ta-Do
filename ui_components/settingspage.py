@@ -1,11 +1,10 @@
-from .button import Button
 import flet as ft
 
 
 class SettingsPage(ft.Column):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.theme_mode_button = Button(icon=ft.icons.LIGHT_MODE_SHARP, text='Light mode', on_click=self.switch_theme_mode)
+        self.theme_mode_button = ft.TextButton(icon=ft.icons.LIGHT_MODE_SHARP, text='Light mode', on_click=self.switch_theme_mode)
         self.controls = [
             self.theme_mode_button
         ]
