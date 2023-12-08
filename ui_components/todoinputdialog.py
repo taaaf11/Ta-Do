@@ -12,8 +12,8 @@ class TodoInputDialog(ft.AlertDialog):
                                         # ui elements of the dialog
         
         # self.actions expects an iterable
-        self.actions = [ft.TextButton(icon=ft.icons.CHECK_SHARP, on_click=self.close),
-                        ft.TextButton(icon=ft.icons.CANCEL_SHARP, on_click=self.cancel)]
+        self.actions = [ft.IconButton(icon=ft.icons.CHECK_SHARP, on_click=self.close),
+                        ft.IconButton(icon=ft.icons.CANCEL_SHARP, on_click=self.cancel)]
         self.actions_alignment = ft.MainAxisAlignment.CENTER
 
     def get_todo(self) -> Todo:
@@ -25,7 +25,11 @@ class TodoInputDialog(ft.AlertDialog):
     
     def cancel(self, e) -> None:
         self.text_field.value = ''  # similar to self.close function, but empties the input
-        self.close()
+        
+        # I could do self.close,
+        # but it requires an event in its parameters        
+        self.open = False
+        self.page.update()
 
     def build(self):
         return self

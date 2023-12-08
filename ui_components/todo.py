@@ -8,16 +8,16 @@ class Todo(ft.Row):
         self.done = done
         self.checkbox = ft.Checkbox(label=self.content, value=self.done, on_change=self.on_checkbox_change)
         
-        self.rename_button = ft.TextButton(icon=ft.icons.EDIT_SHARP, on_click=self.edit,
+        self.rename_button = ft.IconButton(icon=ft.icons.EDIT_SHARP, on_click=self.edit,
                                     visible=True, icon_color=ft.colors.GREY)
         
-        self.delete_button = ft.TextButton(icon=ft.icons.DELETE_OUTLINE, on_click=self.delete,
+        self.delete_button = ft.IconButton(icon=ft.icons.DELETE_OUTLINE, on_click=self.delete,
                                     visible=False, icon_color=ft.colors.GREY)
         
         if self.checkbox.value:  # when read from file, checkmark-ed todo's don't show
-            self.delete_button.visible = True  # delete automatically
+            self.delete_button.visible = True  # delete button automatically
         
-        self.buttons_row = ft.Row([self.rename_button, self.delete_button])
+        self.buttons_row = ft.Row([self.rename_button, self.delete_button], spacing=0)
         
         self.controls = [self.checkbox, self.buttons_row]
         self.alignment = ft.MainAxisAlignment.SPACE_BETWEEN
