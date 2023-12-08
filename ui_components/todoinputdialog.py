@@ -8,7 +8,8 @@ class TodoInputDialog(ft.AlertDialog):
         super().__init__(*args, **kwargs)
         self.title = ft.Text('Create a new ToDo...')
         self.text_field = TextInput(on_submit=self.close)  # user presses enter key
-        self.content = self.text_field  # don't get confused. This is item(s) of the dialog
+        self.content = self.text_field  # don't get confused. This denotes a 'container'
+                                        # ui elements of the dialog
         
         # self.actions expects an iterable
         self.actions = [ft.TextButton(icon=ft.icons.CHECK_SHARP, on_click=self.close),
@@ -24,8 +25,7 @@ class TodoInputDialog(ft.AlertDialog):
     
     def cancel(self, e) -> None:
         self.text_field.value = ''  # similar to self.close function, but empties the input
-        self.open = False
-        self.page.update()
+        self.close()
 
     def build(self):
         return self

@@ -4,7 +4,6 @@ import flet as ft
 class Todo(ft.Row):
     def __init__(self, content: str, done: bool = False, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
-        # self.todo_list_inst = todo_list_inst
         self.content = content
         self.done = done
         self.checkbox = ft.Checkbox(label=self.content, value=self.done, on_change=self.on_checkbox_change)
@@ -13,11 +12,10 @@ class Todo(ft.Row):
                                     visible=True, icon_color=ft.colors.GREY)
         
         self.delete_button = ft.TextButton(icon=ft.icons.DELETE_OUTLINE, on_click=self.delete,
-                                    visible=True, icon_color=ft.colors.GREY)
+                                    visible=False, icon_color=ft.colors.GREY)
         
-        # if self.checkbox.value:  # when read from file, checkmark-ed todo's don't show
-        #     self.delete_button.visible = True  # delete automatically
-        #     self.rename_button.visible = True
+        if self.checkbox.value:  # when read from file, checkmark-ed todo's don't show
+            self.delete_button.visible = True  # delete automatically
         
         self.buttons_row = ft.Row([self.rename_button, self.delete_button])
         

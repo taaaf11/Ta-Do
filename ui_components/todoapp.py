@@ -19,7 +19,7 @@ class TodoApp(ft.UserControl):
     def save_data(self) -> None:
         self.todos.save_to_file()  # settings page button
     
-    # all above functions are just wrapper to the functions of
+    # all above functions are wrapper to the functions of
     # TodoList() class functions
 
     def build(self):
