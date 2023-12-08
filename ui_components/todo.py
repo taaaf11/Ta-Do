@@ -10,13 +10,19 @@ class Todo(ft.Row):
         self.done = done
         self.checkbox = ft.Checkbox(label=self.content, value=self.done, on_change=self.on_checkbox_change)
         
+        self.rename_button = Button(icon=ft.icons.EDIT_SHARP, on_click=self.edit,
+                                    visible=True, icon_color=ft.colors.GREY)
+        
         self.delete_button = Button(icon=ft.icons.DELETE_OUTLINE, on_click=self.delete,
-                                    visible=False, icon_color=ft.colors.GREY)
+                                    visible=True, icon_color=ft.colors.GREY)
         
-        if self.checkbox.value:  # when read from file, checkmark-ed todo's don't show
-            self.delete_button.visible = True  # delete automatically
+        # if self.checkbox.value:  # when read from file, checkmark-ed todo's don't show
+        #     self.delete_button.visible = True  # delete automatically
+        #     self.rename_button.visible = True
         
-        self.controls = [self.checkbox, self.delete_button]
+        self.buttons_row = ft.Row([self.rename_button, self.delete_button])
+        
+        self.controls = [self.checkbox, self.buttons_row]
         self.alignment = ft.MainAxisAlignment.SPACE_BETWEEN
         self.vertical_alignment = ft.CrossAxisAlignment.CENTER
         self.expand = True
@@ -35,6 +41,15 @@ class Todo(ft.Row):
         # Calling its method del_todo to delete a todo
         # see 'page.add' (last) lines of main.py
         self.page.controls[0].del_todo(self)
+    
+    def edit(self, e):
+        page_instance = self.page
+        page_instance.dialog.title = ft.Text('Edit todo...')
+        page_instance.dialog.text_field.value = self.checkbox.label
+        page_instance.dialog.open = True
+        page_instance.dialog.on_dismiss = lambda _: page_instance.controls[0].add_todo(Todo(page_instance.dialog.text_field.value))
+        page_instance.controls[0].del_todo(self)
+        page_instance.update()
     
     def get_data(self) -> tuple:  # an 'interface' to get values of Todo instance
         return self.checkbox.label, self.checkbox.value

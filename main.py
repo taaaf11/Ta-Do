@@ -22,20 +22,24 @@ def main(page: ft.Page):
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     
     # these two variables' values would be shared between the two very defined functions
-    add_todo_dialog = TodoInputDialog()
-    page.dialog = add_todo_dialog
+    todo_dialog = TodoInputDialog()
+    page.dialog = todo_dialog
     
     def esc_key_handle(e: ft.KeyboardEvent):
         # when escape key is pressed, the dialog dismisses
         # in addition, we want the value to be empty, so that the todo is not added
         if e.key == 'Escape':
-            add_todo_dialog.text_field.value = ''  
+            todo_dialog.text_field.value = ''  
         page.update()
     
     def create_todo(e):
+        # when editing a todo
+        # same instance of page.dialog is used, and title is changed,
+        # so, explicitly resetting the title makes sense.
+        page.dialog.title = ft.Text('Create a new ToDo...')
         page.dialog.open = True
-        page.dialog.on_dismiss = lambda _: home_view.add_todo(add_todo_dialog.get_todo());\
-            add_todo_dialog.text_field.value = ''  # cleaning the value of box
+        page.dialog.on_dismiss = lambda _: home_view.add_todo(todo_dialog.get_todo());\
+            todo_dialog.text_field.value = ''  # cleaning the value of box
         page.update()
     
     # we don't our todo's to be center aligned, but we want contents of other 'pages'
