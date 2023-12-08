@@ -12,8 +12,8 @@ class TodoInputDialog(ft.AlertDialog):
                                         # ui elements of the dialog
         
         # self.actions expects an iterable
-        self.actions = [ft.IconButton(icon=ft.icons.CHECK_SHARP, on_click=self.close),
-                        ft.IconButton(icon=ft.icons.CANCEL_SHARP, on_click=self.cancel)]
+        self.actions = [ft.TextButton(icon=ft.icons.CHECK_SHARP, on_click=self.close),
+                        ft.TextButton(icon=ft.icons.CANCEL_SHARP, on_click=self.cancel)]
         self.actions_alignment = ft.MainAxisAlignment.CENTER
 
     def get_todo(self) -> Todo:
