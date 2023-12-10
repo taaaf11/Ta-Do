@@ -5,4 +5,4 @@
 /todo_data.txt
 /prep*
 /requirements.txt
-/*.dockerfile
+/*.docker*

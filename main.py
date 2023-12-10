@@ -3,6 +3,7 @@
 # Author: Muhammad Altaaf
 # Contact email: taafuuu@gmail.com
 # Description: A simple to-do app.
+# Source code: 'https://www.github.com/taaaf11/Ta-Do'
 #
 
 
@@ -11,12 +12,14 @@ import flet as ft
 
 
 def main(page: ft.Page):
+    github_repo_link = 'https://www.github.com/taaaf11/Ta-Do'
+    
     page.title = 'Ta-Do'
     page.theme = ft.Theme(color_scheme_seed='#01666f')  # pine green
     page.theme_mode = ft.ThemeMode.DARK
     
-    page.window_height = 400
-    page.window_width = 500
+    page.window_height = 450
+    page.window_width = 530
     page.window_resizable = False
     
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
@@ -96,10 +99,10 @@ def main(page: ft.Page):
     ], selected_index=0, on_change=navigate_to_page)
 
     page.floating_action_button = ft.FloatingActionButton(icon=ft.icons.ADD_SHARP, on_click=create_todo, shape=ft.CircleBorder())
-
+    
     home_view = TodoApp()
-    settings_view = SettingsPage(home_view, page, visible=False)
-    about_view = AboutPage(author_name='Muhammad Altaaf', visible=False)
+    settings_view = SettingsPage(home_view, visible=False)
+    about_view = AboutPage(author_name='Muhammad Altaaf', source_code_link=github_repo_link, visible=False)
 
     page.add(home_view, settings_view, about_view)
     
