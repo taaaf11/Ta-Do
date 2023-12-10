@@ -1,12 +1,15 @@
 import flet as ft
+import os
 
 
 class SettingsPage(ft.Column):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.theme_mode_button = ft.TextButton(icon=ft.icons.LIGHT_MODE_SHARP, text='Light mode', on_click=self.switch_theme_mode)
+        self.delete_data_button = ft.TextButton(icon=ft.icons.DELETE_FOREVER_SHARP, text='Delete app data', on_click=self.delete_app_data)
         self.controls = [
-            self.theme_mode_button
+            self.theme_mode_button,
+            self.delete_data_button
         ]
         self.alignment = ft.MainAxisAlignment.CENTER
         self.horizontal_alignment = ft.CrossAxisAlignment.CENTER
@@ -26,6 +29,10 @@ class SettingsPage(ft.Column):
             self.theme_mode_button.icon = ft.icons.LIGHT_MODE_SHARP
             self.theme_mode_button.text = 'Light mode'
             self.page.update()
+    
+    def delete_app_data(self, e) -> None:
+        #  app data rests in 'todo_data.txt' file.
+        os.remove('todo_data.txt')
     
     def build(self):
         return self
