@@ -4,5 +4,4 @@
 *__pycache__/
 /todo_data.txt
 /prep*
-/requirements.txt
 /*.docker*
