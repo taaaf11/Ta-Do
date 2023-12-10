@@ -9,18 +9,18 @@ A simple todo app, using flet framework in python.
 
 ## Let's Run it!!
 1. Clone the repo or download zip.
-2. Navigate to the cloned directory or to the extracted directory.
-3. Open terminal in the directory.
-4. Run the following commands:
-5. `python -m venv .env`
-6. `.env\Scripts\activate.ps1` (for powershell)
-7. `python main.py`
-8. `deactivate`
+2. Open terminal in the cloned or extracted directory.
+3. Run the following commands:
+4. Creating virtual environment: `python -m venv .env` ('.env' appears at the start of prompt)
+5. Activating the environment: `.env\Scripts\activate`
+6. Installing required packages: `pip install -r requirements.txt`
+7. Running the app: `python main.py`
+8. Deactivating the environment: `deactivate`
 
 ## Issues
 In case of any issues in the app, straight create an issue. PRs are welcome.
 
 ## Buy me a Coffe
-If you like this my project, consider buying me a coffee! Your support means great to me!
+If you like this app, please consider buying me a coffee! Your support means great to me! 🤍
 <br><br>
 <a href="https://www.buymeacoffee.com/tafu__" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-green.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
