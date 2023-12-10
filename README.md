@@ -3,8 +3,9 @@
 # Ta-Do
 A simple todo app, using flet framework in python.
 <br><br>
-![Screenshot (130)](https://github.com/taaaf11/Ta-Do/assets/109919009/70a4c8f8-7206-432a-b34e-760f83a49c77)
+![Appearance](https://github.com/taaaf11/Ta-Do/assets/109919009/3dddaf9c-ba60-4aea-af82-1d8349e664ef)
 <br>
+
 
 ## Let's Run it!!
 1. Clone the repo or download zip.
