@@ -15,3 +15,10 @@ A simple todo app, using flet framework in python.
 6. `.env\Scripts\activate.ps1` (for powershell)
 7. `python main.py`
 8. `deactivate`
+
+## Issues
+In case of any issues in the app, straight create an issue. PRs are welcome.
+
+## Buy me a Coffe
+If you like this my project, consider buying me a coffee! Your support means great to me!
+<a href="https://www.buymeacoffee.com/tafu__" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-green.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
