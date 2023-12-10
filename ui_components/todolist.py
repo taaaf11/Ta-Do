@@ -43,6 +43,7 @@ class TodoList(ft.ListView):
         try:
             file = open('todo_data.txt', 'r')
         except:
+            open('todo_data.txt', 'w').close()
             return
         
         lines_of_file = self._into_lines(file)
