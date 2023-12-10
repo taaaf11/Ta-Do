@@ -6,9 +6,10 @@ import flet as ft
 class TodoInputDialog(ft.AlertDialog):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.title = ft.Text('Create a new ToDo...')
+        # Title would be explicitly set where this dialog would be used
+        # self.title = ...
         self.text_field = TextInput(on_submit=self.close)  # user presses enter key
-        self.content = self.text_field  # don't get confused. This denotes a 'container'
+        self.content = self.text_field  # don't get confused. This denotes a 'container' for
                                         # ui elements of the dialog
         
         # self.actions expects an iterable
@@ -23,8 +24,9 @@ class TodoInputDialog(ft.AlertDialog):
         self.open = False
         self.page.update()
     
+    # similar to self.close function, but empties the input
     def cancel(self, e) -> None:
-        self.text_field.value = ''  # similar to self.close function, but empties the input
+        self.text_field.value = ''
         
         # I could do self.close,
         # but it requires an event in its parameters        
