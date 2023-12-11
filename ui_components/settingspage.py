@@ -1,3 +1,4 @@
+from .fn import get_data_storage_path
 import flet as ft
 import os
 
@@ -31,8 +32,13 @@ class SettingsPage(ft.Column):
             self.page.update()
     
     def delete_app_data(self, e) -> None:
-        #  app data rests in 'todo_data.txt' file.
-        os.remove('todo_data.txt')
+        #  app data rests in 'Ta-Do_data/todo_data.txt' file.
+        app_data_dir = get_data_storage_path()
+        try:  
+            os.remove(f'{app_data_dir}/todo_data.txt')
+            os.rmdir(f'{app_data_dir}')
+        except:
+            return
     
     def build(self):
         return self
