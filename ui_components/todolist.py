@@ -1,6 +1,8 @@
+from .fn import get_data_storage_path
 from .todo import Todo
 from typing import TextIO
 import flet as ft
+import os
 
 
 class TodoList(ft.ListView):
@@ -8,6 +10,7 @@ class TodoList(ft.ListView):
         super().__init__(*args, **kwargs)
         self.controls = []
         self.height = 320
+        self.app_data_dir = get_data_storage_path()
 
     def add_todo(self, todo: Todo) -> None:
         if not len(todo.content) == 0:  # dialog is not empty
@@ -15,7 +18,7 @@ class TodoList(ft.ListView):
         self.update()
         self.save_to_file()  # auto save
     
-    def del_todo(self, todo: Todo):
+    def del_todo(self, todo: Todo) -> None:
         self.controls.remove(todo)
         self.update()
         self.save_to_file()  # auto save
@@ -40,12 +43,13 @@ class TodoList(ft.ListView):
         return lines
     
     def read_from_file(self) -> None:
-        try:
-            file = open('todo_data.txt', 'r')
-        except:
-            open('todo_data.txt', 'w').close()
+        # it is first run, or user deleted the app data.
+        if not os.path.isdir(self.app_data_dir):
+            os.mkdir(self.app_data_dir)
+            open(f'{self.app_data_dir}/todo_data.txt', 'w').close()  # create an empty file
             return
         
+        file = open(f'{self.app_data_dir}/todo_data.txt', 'r')
         lines_of_file = self._into_lines(file)
         file.close()
         
@@ -61,7 +65,10 @@ class TodoList(ft.ListView):
         self.update()
     
     def save_to_file(self) -> None:
-        file = open('todo_data.txt', 'w')
+        # write mode is used to save only what the
+        # user is seeing. opening the file in append
+        # mode causes the repitition of data in file
+        file = open(f'{self.app_data_dir}/todo_data.txt', 'w')
         for item in self.controls:
             content, done = item.get_data()
             if done == True:  # checkbox is true
