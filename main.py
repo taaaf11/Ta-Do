@@ -44,7 +44,8 @@ def main(page: ft.Page):
         page.update()
     
     # we don't our todo's to be center aligned, but we want contents of other 'pages'
-    # to be vertically center aligned, so this is the solution
+    # to be vertically center aligned, the solution is to keep the vertical alignment of the
+    # home page in a variable and use it when the home page is requested.
     old_page_vertical_alignment = page.vertical_alignment
     
     page.on_keyboard_event = esc_key_handle

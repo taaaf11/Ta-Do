@@ -2,7 +2,6 @@ import os, platform
 
 def get_data_storage_path() -> str:
         current_system = platform.system()
-        print(current_system)
         if current_system == 'Windows':
             storage_path = os.path.join(os.environ['USERPROFILE'], 'AppData', 'Ta-Do')
         elif current_system == 'Linux':

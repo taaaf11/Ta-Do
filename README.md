@@ -23,7 +23,7 @@ In case of any issues in the app, straight create an issue. PRs are welcome.
 ## License
 The good ol' MIT license. <br> Attribution and credits are required.
 
-## Buy me a Coffee
+## Buy me a Coffeee
 If you like this app, please consider buying me a coffee! Your support means great to me! 🤍
 <br><br>
 <a href="https://www.buymeacoffee.com/tafu__" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-green.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
