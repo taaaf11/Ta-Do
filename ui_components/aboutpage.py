@@ -13,10 +13,9 @@ class AboutPage(ft.Column):
             ft.Text(self.author_name, size=20),
             ft.Text('Version: 1.0.1', size=15)
         ]
-        if not(self.source_code_link is None):  
+        if not (self.source_code_link is None):  
             self.controls.append(
                 ft.Row([
-                    # ft.Text('Source code:'),
                     ft.OutlinedButton(text='Source code', icon=ft.icons.LINK,
                                       on_click=lambda _:
                                       self.page.launch_url(source_code_link))
