@@ -3,6 +3,7 @@
 # Author: Muhammad Altaaf
 # Contact email: taafuuu@gmail.com
 # Description: A simple to-do app.
+# Version: 1.0.1
 # Source code: 'https://www.github.com/taaaf11/Ta-Do'
 #
 
