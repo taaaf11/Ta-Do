@@ -10,7 +10,8 @@ class AboutPage(ft.Column):
             ft.Text('Written by:', size=30),
             ft.CircleAvatar(foreground_image_url='https://www.github.com/taaaf11.png?size=120px',
                             radius=50),
-            ft.Text(self.author_name, size=20)
+            ft.Text(self.author_name, size=20),
+            ft.Text('Version: 1.0.1', size=15)
         ]
         if not(self.source_code_link is None):  
             self.controls.append(
