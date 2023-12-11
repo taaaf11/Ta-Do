@@ -20,6 +20,9 @@ A simple todo app, using flet framework in python.
 ## Issues
 In case of any issues in the app, straight create an issue. PRs are welcome.
 
+## License
+The good ol' MIT license. <br> Attribution and credits are required.
+
 ## Buy me a Coffee
 If you like this app, please consider buying me a coffee! Your support means great to me! 🤍
 <br><br>
