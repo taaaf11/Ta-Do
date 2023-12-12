@@ -11,8 +11,8 @@ A simple todo app, using flet framework in python.
 1. Clone the repo or download zip.
 2. Open terminal in the cloned or extracted directory.
 3. Run the following commands:
-4. Creating virtual environment: `python -m venv .env` ('.env' appears at the start of prompt)
-5. Activating the environment: `.env\Scripts\activate`
+4. Creating virtual environment: `python -m venv .env`
+5. Activating the environment: `.env\Scripts\activate` ('.env' appears at the start of prompt)
 6. Installing required packages: `pip install -r requirements.txt`
 7. Running the app: `python main.py`
 8. Deactivating the environment: `deactivate`
