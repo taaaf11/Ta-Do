@@ -29,14 +29,21 @@ def main(page: ft.Page):
     todo_dialog = TodoInputDialog()
     page.dialog = todo_dialog
     
-    def esc_key_handle(e: ft.KeyboardEvent):
+    def handle_kbd_shortcuts(e: ft.KeyboardEvent):
         # when escape key is pressed, the dialog dismisses
-        # in addition, we want the value to be empty, so that the todo is not added
+        # in addition, we want the value to be empty, so that the todo is not added on dialog dismiss
         if e.key == 'Escape':
-            todo_dialog.text_field.value = ''  
+            todo_dialog.text_field.value = ''
+        # user presses backspace key even when the input field is empty
+        if e.key == 'Backspace' and todo_dialog.text_field.value == '':
+            page.dialog.open = False
+        if e.key == 'N':  # user presses 'n' key.
+            create_todo()
+        if e.key == 'Delete':  # deletes all checked todo's
+            home_view.del_all_checked_todos()
         page.update()
     
-    def create_todo(e):
+    def create_todo():
         page.dialog.title = ft.Text('Create a new ToDo...')
         page.dialog.open = True
         page.dialog.on_dismiss = lambda _: home_view.add_todo(todo_dialog.get_todo());\
@@ -48,7 +55,7 @@ def main(page: ft.Page):
     # home page in a variable and use it when the home page is requested.
     old_page_vertical_alignment = page.vertical_alignment
     
-    page.on_keyboard_event = esc_key_handle
+    page.on_keyboard_event = handle_kbd_shortcuts
     
     def navigate_to_page(e):
         selected_page = e.control.selected_index
@@ -97,7 +104,7 @@ def main(page: ft.Page):
         )
     ], selected_index=0, on_change=navigate_to_page)
 
-    page.floating_action_button = ft.FloatingActionButton(icon=ft.icons.ADD_SHARP, on_click=create_todo, shape=ft.CircleBorder())
+    page.floating_action_button = ft.FloatingActionButton(icon=ft.icons.ADD_SHARP, on_click=lambda _: create_todo(), shape=ft.CircleBorder())
     
     home_view = TodoApp()
     settings_view = SettingsPage(home_view, visible=False)

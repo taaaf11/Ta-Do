@@ -16,6 +16,9 @@ class TodoApp(ft.UserControl):
         self.todos.del_todo(todo)  # auto saves
         self.update()
     
+    def del_all_checked_todos(self) -> None:
+        self.todos.del_all_checked()
+    
     def save_data(self) -> None:
         self.todos.save_to_file()  # settings page button
     

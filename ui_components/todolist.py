@@ -23,6 +23,11 @@ class TodoList(ft.ListView):
         self.update()
         self.save_to_file()  # auto save
     
+    def del_all_checked(self) -> None:
+        for todo in self.controls.copy():
+            if todo.done:
+                self.del_todo(todo)
+    
     @staticmethod
     def _into_lines(file: TextIO) -> list:  # put lines of file into a list
         eof = False
