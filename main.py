@@ -31,16 +31,23 @@ def main(page: ft.Page):
     
     def handle_kbd_shortcuts(e: ft.KeyboardEvent):
         # when escape key is pressed, the dialog dismisses
-        # in addition, we want the value to be empty, so that the todo is not added on dialog dismiss
+        # in addition, we want the value to be empty, so that a
+        # todo is not added on dialog dismiss
         if e.key == 'Escape':
             todo_dialog.text_field.value = ''
+        
         # user presses backspace key even when the input field is empty
-        if e.key == 'Backspace' and todo_dialog.text_field.value == '':
+        elif e.key == 'Backspace' and todo_dialog.text_field.value == '':
             page.dialog.open = False
-        if e.key == 'N':  # user presses 'n' key.
+        
+        elif e.key == 'N':  # user presses 'n' key.
+            if todo_dialog.open:  # user is entering something into todo input dialog
+                return  # don't do anything if the dialog is open
             create_todo()
-        if e.key == 'Delete':  # deletes all checked todo's
+        
+        elif e.key == 'Delete':  # deletes all checked todo's
             home_view.del_all_checked_todos()
+        
         page.update()
     
     def create_todo():
