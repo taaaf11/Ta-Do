@@ -9,6 +9,7 @@
 
 
 from ui_components import TodoApp, TodoInputDialog, SettingsPage, AboutPage
+from ui_components.fn import get_saved_theme_color_name
 import flet as ft
 
 
@@ -16,7 +17,8 @@ def main(page: ft.Page):
     github_repo_link = 'https://www.github.com/taaaf11/Ta-Do'
     
     page.title = 'Ta-Do'
-    page.theme = ft.Theme(color_scheme_seed='#01666f')  # pine green
+    color_scheme_seed = get_saved_theme_color_name()
+    page.theme = ft.Theme(color_scheme_seed=color_scheme_seed)  # default is pine green
     page.theme_mode = ft.ThemeMode.DARK
     
     page.window_height = 450
@@ -110,7 +112,7 @@ def main(page: ft.Page):
             selected_icon=ft.icons.LIGHTBULB_SHARP
         )
     ], selected_index=0, on_change=navigate_to_page)
-
+    
     page.floating_action_button = ft.FloatingActionButton(icon=ft.icons.ADD_SHARP, on_click=lambda _: create_todo(), shape=ft.CircleBorder())
     
     home_view = TodoApp()

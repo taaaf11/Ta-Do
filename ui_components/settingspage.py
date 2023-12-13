@@ -1,6 +1,7 @@
 from .fn import get_data_storage_path
+from .themecolourdropdown import ThemeColourDropdown
 import flet as ft
-import os
+import os, glob
 
 
 class SettingsPage(ft.Column):
@@ -8,9 +9,26 @@ class SettingsPage(ft.Column):
         super().__init__(*args, **kwargs)
         self.theme_mode_button = ft.TextButton(icon=ft.icons.LIGHT_MODE_SHARP, text='Light mode', on_click=self.switch_theme_mode)
         self.delete_data_button = ft.TextButton(icon=ft.icons.DELETE_FOREVER_SHARP, text='Delete app data', on_click=self.delete_app_data)
+        self.theme_color_dropdown = ThemeColourDropdown([
+            'Red',
+            'Pink',
+            'Purple',
+            'Indigo',
+            'Blue',
+            'Green',
+            'Default'
+        ])
+        
+        self.theme_dropdown_controls = ft.Row([
+            ft.Text('Theme Colour: '),
+            self.theme_color_dropdown,
+            ft.Text('*Changes take effect once you restart the app.')
+        ], alignment=ft.MainAxisAlignment.CENTER)
+        
         self.controls = [
             self.theme_mode_button,
-            self.delete_data_button
+            self.delete_data_button,
+            self.theme_dropdown_controls
         ]
         self.alignment = ft.MainAxisAlignment.CENTER
         self.horizontal_alignment = ft.CrossAxisAlignment.CENTER
@@ -35,7 +53,8 @@ class SettingsPage(ft.Column):
         #  app data rests in 'Ta-Do_data/todo_data.txt' file.
         app_data_dir = get_data_storage_path()
         try:  
-            os.remove(f'{app_data_dir}/todo_data.txt')
+            for match in glob.glob(f'{app_data_dir}/*.txt'):
+                os.remove(match)
             os.rmdir(f'{app_data_dir}')
         except:
             return
