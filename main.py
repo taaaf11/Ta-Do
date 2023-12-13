@@ -74,6 +74,9 @@ def main(page: ft.Page):
             
             # Read comments above for variable old_page_vertical_alignment
             page.vertical_alignment = old_page_vertical_alignment
+            
+            # show the create todo button
+            page.floating_action_button.visible = True
         elif selected_page == 1:
             home_view.visible = False
             settings_view.visible = True
@@ -81,6 +84,9 @@ def main(page: ft.Page):
             
             # Read comments above for variable old_page_vertical_alignment
             page.vertical_alignment = ft.MainAxisAlignment.CENTER
+            
+            # hide the create todo button
+            page.floating_action_button.visible = False
         elif selected_page == 2:
             home_view.visible = False
             settings_view.visible = False
@@ -88,6 +94,9 @@ def main(page: ft.Page):
             
             # Read comments above for variable old_page_vertical_alignment
             page.vertical_alignment = ft.MainAxisAlignment.CENTER
+            
+            # hide the create todo button
+            page.floating_action_button.visible = False
         
         page.update()
     
