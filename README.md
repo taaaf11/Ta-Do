@@ -17,6 +17,11 @@ A simple todo app, using flet framework in python.
 7. Running the app: `python main.py`
 8. Deactivating the environment: `deactivate`
 
+
+## Versioning info
+The following versioning scheme is used:
+`[major].[bugfix].[minor]`
+
 ## Issues
 In case of any issues in the app, straight create an issue. PRs are welcome.
 
