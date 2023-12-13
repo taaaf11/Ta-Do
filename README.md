@@ -19,7 +19,7 @@ A simple todo app, using flet framework in python.
 
 
 ## Versioning info
-The following versioning scheme is used:
+The following versioning scheme is used:<br>
 `[major].[bugfix].[minor]`
 
 ## Issues
