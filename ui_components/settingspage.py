@@ -1,4 +1,4 @@
-from .fn import get_data_storage_path
+from .fn import get_data_storage_path, get_saved_theme_mode
 from .themecolourdropdown import ThemeColourDropdown
 import flet as ft
 import os, glob
@@ -7,7 +7,13 @@ import os, glob
 class SettingsPage(ft.Column):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.theme_mode_button = ft.TextButton(icon=ft.icons.LIGHT_MODE_SHARP, text='Light mode', on_click=self.switch_theme_mode)
+        self.theme_mode_button = ft.TextButton(on_click=self.switch_theme_mode)
+        if get_saved_theme_mode().value == 'dark':
+            self.theme_mode_button.icon = ft.icons.LIGHT_MODE_SHARP
+            self.theme_mode_button.text = 'Light mode'
+        else:
+            self.theme_mode_button.icon = ft.icons.DARK_MODE_SHARP
+            self.theme_mode_button.text = 'Dark mode'
         self.delete_data_button = ft.TextButton(icon=ft.icons.DELETE_FOREVER_SHARP, text='Delete app data', on_click=self.delete_app_data)
         self.theme_color_dropdown = ThemeColourDropdown([
             'Red',
@@ -58,13 +64,13 @@ class SettingsPage(ft.Column):
         try:  
             for match in glob.glob(f'{app_data_dir}/*.txt'):
                 os.remove(match)
-            os.rmdir(f'{app_data_dir}')
+            # os.rmdir(f'{app_data_dir}')
         except:
             return
     
     def save_theme_mode(self):
-        theme_mode_file = open(f'{get_data_storage_path}/theme_mode_pref.txt')
-        theme_mode_file.write(self.page.theme_mode)
+        theme_mode_file = open(f'{get_data_storage_path()}/theme_mode_pref.txt', 'w')
+        theme_mode_file.write(self.page.theme_mode.value)
         theme_mode_file.close()
     
     def build(self):

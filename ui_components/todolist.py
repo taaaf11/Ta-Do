@@ -51,7 +51,12 @@ class TodoList(ft.ListView):
         # it is first run, or user deleted the app data.
         if not os.path.isdir(self.app_data_dir):
             os.mkdir(self.app_data_dir)
-            open(f'{self.app_data_dir}/todo_data.txt', 'w').close()  # create an empty file
+            return
+        else:
+            # data file does not exist
+            if not os.path.isfile(f'{self.app_data_dir}/todo_data.txt'):
+                open(f'{self.app_data_dir}/todo_data.txt', 'w').close()  # create an empty file
+                print('here')
             return
         
         file = open(f'{self.app_data_dir}/todo_data.txt', 'r')
