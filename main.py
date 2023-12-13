@@ -23,7 +23,6 @@ def main(page: ft.Page):
     
     page.window_height = 450
     page.window_width = 530
-    page.window_resizable = False
     
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     
@@ -98,7 +97,15 @@ def main(page: ft.Page):
         elif e.direction == 'reverse':
             page.floating_action_button.visible = False
         page.update()
-
+    
+    def adjust_list_size(e):
+        # for window_height being 450, the height of TodoList() was 320.
+        # 450 - 320 = 130 (or 450 - 130 = 320). Applying this logic here,
+        # we get suitable height for the TodoList() contents when the
+        # window resize events occur
+        home_view.todos.height = page.window_height - 130
+        home_view.todos.update()
+    
     page.appbar = ft.AppBar(title=ft.Text('Ta-Do'))
 
     page.drawer = ft.NavigationDrawer(controls=[
@@ -129,6 +136,8 @@ def main(page: ft.Page):
     about_view = AboutPage(author_name='Muhammad Altaaf', source_code_link=github_repo_link, version_info='2.1.0', visible=False)
 
     page.add(home_view, settings_view, about_view)
+    
+    page.on_window_event = adjust_list_size
     
     # get data from file, couldn't do any better
     home_view.todos.read_from_file()
