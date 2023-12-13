@@ -3,7 +3,7 @@ import os, platform, flet as ft
 def get_data_storage_path() -> str:
         current_system = platform.system()
         if current_system == 'Windows':
-            storage_path = os.path.join(os.environ['USERPROFILE'], 'AppData', 'Ta-Do')
+            storage_path = os.path.join(os.environ['USERPROFILE'], 'AppData', 'Local', 'Ta-Do')
         elif current_system == 'Linux':
             storage_path = os.path.join(os.environ['HOME'], '.local', 'share', 'Ta-Do')
         elif current_system == 'Darwin':  # mac os
