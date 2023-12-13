@@ -7,7 +7,7 @@ class ThemeColourDropdown(ft.Dropdown):
         super().__init__(*args, *kwargs)
         self.label = 'Color Scheme'
         self.on_change = self.save_color_option
-        self.width = 250
+        self.width = 270
         for color_name in colors:
             self.options.append(
                 ft.dropdown.Option(color_name)

@@ -19,11 +19,13 @@ class SettingsPage(ft.Column):
             'Default'
         ])
         
-        self.theme_dropdown_controls = ft.Row([
-            ft.Text('Theme Colour: '),
-            self.theme_color_dropdown,
-            ft.Text('*Changes take effect once you restart the app.')
-        ], alignment=ft.MainAxisAlignment.CENTER)
+        self.theme_dropdown_controls = ft.Column([
+            ft.Row([
+                ft.Text('Theme Colour: '),
+                self.theme_color_dropdown
+            ], alignment=ft.MainAxisAlignment.CENTER, spacing=30),
+            ft.Text('*Changes take effect once you\nrestart the app.', text_align=ft.TextAlign.CENTER)
+        ], horizontal_alignment=ft.CrossAxisAlignment.CENTER)
         
         self.controls = [
             self.theme_mode_button,
