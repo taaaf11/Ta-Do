@@ -14,6 +14,6 @@ class ThemeColourDropdown(ft.Dropdown):
             )
     
     def save_color_option(self, e):
-        file = open(f'{get_data_storage_path()}/theme_color_dropd_pref.txt', 'w')
+        file = open(f'{get_data_storage_path()}/theme_color_pref.txt', 'w')
         file.write(self.value)
         file.close()

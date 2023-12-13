@@ -42,14 +42,15 @@ class SettingsPage(ft.Column):
             # change button accordingly
             self.theme_mode_button.icon = ft.icons.DARK_MODE_SHARP
             self.theme_mode_button.text = 'Dark mode'
-            self.page.update()
         else:
             self.page.theme_mode = ft.ThemeMode.DARK
             
             # change button accordingly
             self.theme_mode_button.icon = ft.icons.LIGHT_MODE_SHARP
             self.theme_mode_button.text = 'Light mode'
-            self.page.update()
+        
+        self.page.update()
+        self.save_theme_mode()
     
     def delete_app_data(self, e) -> None:
         #  app data rests in 'Ta-Do_data/todo_data.txt' file.
@@ -60,6 +61,11 @@ class SettingsPage(ft.Column):
             os.rmdir(f'{app_data_dir}')
         except:
             return
+    
+    def save_theme_mode(self):
+        theme_mode_file = open(f'{get_data_storage_path}/theme_mode_pref.txt')
+        theme_mode_file.write(self.page.theme_mode)
+        theme_mode_file.close()
     
     def build(self):
         return self

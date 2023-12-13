@@ -3,13 +3,13 @@
 # Author: Muhammad Altaaf
 # Contact email: taafuuu@gmail.com
 # Description: A simple to-do app.
-# Version: 2.0.0
+# Version: 2.1.0
 # Source code: 'https://www.github.com/taaaf11/Ta-Do'
 #
 
 
 from ui_components import TodoApp, TodoInputDialog, SettingsPage, AboutPage
-from ui_components.fn import get_saved_theme_color_name
+from ui_components.fn import get_saved_theme_color_name, get_saved_theme_mode
 import flet as ft
 
 
@@ -19,7 +19,7 @@ def main(page: ft.Page):
     page.title = 'Ta-Do'
     color_scheme_seed = get_saved_theme_color_name()
     page.theme = ft.Theme(color_scheme_seed=color_scheme_seed)  # default is pine green
-    page.theme_mode = ft.ThemeMode.DARK
+    page.theme_mode = get_saved_theme_mode()
     
     page.window_height = 450
     page.window_width = 530
@@ -91,6 +91,13 @@ def main(page: ft.Page):
             page.vertical_alignment = ft.MainAxisAlignment.CENTER
         
         page.update()
+    
+    def show_hide_create_todo_button(e: ft.OnScrollEvent):
+        if e.direction == 'forward':  # forward is upward direction
+            page.floating_action_button.visible = True
+        elif e.direction == 'reverse':
+            page.floating_action_button.visible = False
+        page.update()
 
     page.appbar = ft.AppBar(title=ft.Text('Ta-Do'))
 
@@ -115,9 +122,11 @@ def main(page: ft.Page):
     
     page.floating_action_button = ft.FloatingActionButton(icon=ft.icons.ADD_SHARP, on_click=lambda _: create_todo(), shape=ft.CircleBorder())
     
-    home_view = TodoApp()
-    settings_view = SettingsPage(home_view, visible=False)
-    about_view = AboutPage(author_name='Muhammad Altaaf', source_code_link=github_repo_link, version_info='2.0.0', visible=False)
+    # I have created this on_scroll argument. It does not exist
+    # in 'default' flet.UserControl class
+    home_view = TodoApp(on_scroll=show_hide_create_todo_button)
+    settings_view = SettingsPage(visible=False)
+    about_view = AboutPage(author_name='Muhammad Altaaf', source_code_link=github_repo_link, version_info='2.1.0', visible=False)
 
     page.add(home_view, settings_view, about_view)
     
