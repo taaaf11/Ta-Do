@@ -2,7 +2,7 @@
 # App Name: Ta-Do
 # Author: Muhammad Altaaf
 # Contact email: taafuuu@gmail.com
-# Description: A simple to-do app.
+# Description: A simple to-do list app.
 # Version: 2.3.0
 # Source code: 'https://www.github.com/taaaf11/Ta-Do'
 #
