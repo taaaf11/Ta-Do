@@ -107,7 +107,7 @@ def main(page: ft.Page):
             page.floating_action_button.visible = False
         page.update()
     
-    def adjust_list_size(e):
+    def adjust_list_size_on_resize(e):
         # for window_height being 450, the height of TodoList() was 320.
         # 450 - 320 = 130 (or 450 - 130 = 320). Applying this logic here,
         # we get suitable height for the TodoList() contents when the
@@ -146,7 +146,7 @@ def main(page: ft.Page):
 
     page.add(home_view, settings_view, about_view)
     
-    page.on_window_event = adjust_list_size
+    page.on_window_event = adjust_list_size_on_resize
     
     # get data from file, couldn't do any better
     home_view.todos.read_from_file()
