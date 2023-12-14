@@ -3,7 +3,7 @@
 # Author: Muhammad Altaaf
 # Contact email: taafuuu@gmail.com
 # Description: A simple to-do app.
-# Version: 2.2.0
+# Version: 2.3.0
 # Source code: 'https://www.github.com/taaaf11/Ta-Do'
 #
 
@@ -142,7 +142,7 @@ def main(page: ft.Page):
     # in 'default' flet.UserControl class
     home_view = TodoApp(on_scroll=show_hide_create_todo_button)
     settings_view = SettingsPage(visible=False)
-    about_view = AboutPage(author_name='Muhammad Altaaf', source_code_link=github_repo_link, version_info='2.2.0', visible=False)
+    about_view = AboutPage(author_name='Muhammad Altaaf', source_code_link=github_repo_link, version_info='2.3.0', visible=False)
 
     page.add(home_view, settings_view, about_view)
     
