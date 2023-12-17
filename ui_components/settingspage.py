@@ -64,7 +64,7 @@ class SettingsPage(ft.Column):
         try:  
             for match in glob.glob(f'{app_data_dir}/*.txt'):
                 os.remove(match)
-            # os.rmdir(f'{app_data_dir}')
+            os.rmdir(f'{app_data_dir}')
         except:
             return
     

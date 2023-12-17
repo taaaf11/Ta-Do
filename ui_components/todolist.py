@@ -56,8 +56,7 @@ class TodoList(ft.ListView):
             # data file does not exist
             if not os.path.isfile(f'{self.app_data_dir}/todo_data.txt'):
                 open(f'{self.app_data_dir}/todo_data.txt', 'w').close()  # create an empty file
-                print('here')
-            return
+                return
         
         file = open(f'{self.app_data_dir}/todo_data.txt', 'r')
         lines_of_file = self._into_lines(file)
@@ -65,6 +64,7 @@ class TodoList(ft.ListView):
         
         for line in lines_of_file:
             line_contents = line.split('/')  # content in each line is like this
+            print(line_contents)
             content, done = line_contents[1], line_contents[0]
             
             if done == '0':  # state of the checkbox
