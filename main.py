@@ -35,14 +35,14 @@ def main(page: ft.Page):
         # in addition, we want the value to be empty, so that a
         # todo is not added on dialog dismiss
         if e.key == 'Escape':
-            todo_dialog.text_field.value = ''
+            page.dialog.text_field.value = ''
         
         # user presses backspace key even when the input field is empty
         elif e.key == 'Backspace' and todo_dialog.text_field.value == '':
             page.dialog.open = False
         
         elif e.key == 'N':  # user presses 'n' key.
-            if todo_dialog.open:  # user is entering something into todo input dialog
+            if page.dialog.open:  # user is entering something into todo input dialog
                 return  # don't do anything if the dialog is open
             create_todo()
         

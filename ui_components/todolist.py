@@ -64,7 +64,6 @@ class TodoList(ft.ListView):
         
         for line in lines_of_file:
             line_contents = line.split('/')  # content in each line is like this
-            print(line_contents)
             content, done = line_contents[1], line_contents[0]
             
             if done == '0':  # state of the checkbox

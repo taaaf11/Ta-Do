@@ -5,9 +5,7 @@ class AboutPage(ft.Column):
     def __init__(self, author_name: str, author_avatar_url: str | None = None, source_code_link: str | None = None, version_info: str | None = None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.controls = [
-            ft.Text('Written by:', size=30),
-            # ft.CircleAvatar(foreground_image_url='https://www.github.com/taaaf11.png?size=120px',
-            #                 radius=50)
+            ft.Text('Written by:', size=30)
         ]
         
         if not (author_avatar_url is None):
