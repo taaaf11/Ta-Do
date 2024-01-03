@@ -40,11 +40,16 @@ class Todo(ft.Row):
         self.page.controls[0].del_todo(self)
     
     def edit(self, e):
+        # this goes like this:
+        # Page -> TodoApp -> TodoList
+        todo_list_instance = self.page.controls[0].controls[0]
+        old_idx = todo_list_instance.controls.index(self)
+        
         page_instance = self.page
         page_instance.dialog.title = ft.Text('Edit todo...')
         page_instance.dialog.text_field.value = self.checkbox.label
         page_instance.dialog.open = True
-        page_instance.dialog.on_dismiss = lambda _: page_instance.controls[0].add_todo(Todo(page_instance.dialog.text_field.value))
+        page_instance.dialog.on_dismiss = lambda _: todo_list_instance.add_todo(todo=Todo(page_instance.dialog.text_field.value), index=old_idx)
         page_instance.controls[0].del_todo(self)
         page_instance.update()
     

@@ -12,9 +12,12 @@ class TodoList(ft.ListView):
         self.height = 320
         self.app_data_dir = get_data_storage_path()
 
-    def add_todo(self, todo: Todo) -> None:
+    def add_todo(self, todo: Todo, index=None) -> None:
         if not len(todo.content) == 0:  # dialog is not empty
-            self.controls.append(todo)
+            if index is None:
+                self.controls.append(todo)
+            else:
+                self.controls.insert(index, todo)
         self.update()
         self.save_to_file()  # auto save
     

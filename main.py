@@ -3,7 +3,7 @@
 # Author: Muhammad Altaaf
 # Contact email: taafuuu@gmail.com
 # Description: A simple to-do list app.
-# Version: 2.4.0
+# Version: 2.5.0
 # Source code: 'https://www.github.com/taaaf11/Ta-Do'
 #
 
@@ -107,7 +107,7 @@ def main(page: ft.Page):
             page.floating_action_button.visible = False
         page.update()
     
-    def adjust_list_size_on_resize(e):
+    def adjust_list_size_on_window_resize(e):
         # for window_height being 450, the height of TodoList() was 320.
         # 450 - 320 = 130 (or 450 - 130 = 320). Applying this logic here,
         # we get suitable height for the TodoList() contents when the
@@ -115,7 +115,7 @@ def main(page: ft.Page):
         home_view.todos.height = page.window_height - 130
         home_view.todos.update()
     
-    page.appbar = ft.AppBar(title=ft.Text('Ta-Do'))
+    page.appbar = ft.AppBar(title=ft.Text(page.title))
 
     page.drawer = ft.NavigationDrawer(controls=[
         ft.NavigationDrawerDestination(
@@ -143,12 +143,12 @@ def main(page: ft.Page):
     home_view = TodoApp(on_scroll=show_hide_create_todo_button)
     settings_view = SettingsPage(visible=False)
     about_view = AboutPage(author_name='Muhammad Altaaf', author_avatar_url='https://www.github.com/taaaf11.png?size=120px',
-                           source_code_link=github_repo_link, version_info='2.4.0',
+                           source_code_link=github_repo_link, version_info='2.5.0',
                            visible=False)
 
     page.add(home_view, settings_view, about_view)
     
-    page.on_window_event = adjust_list_size_on_resize
+    page.on_window_event = adjust_list_size_on_window_resize
     
     # get data from file, couldn't do any better
     home_view.todos.read_from_file()
