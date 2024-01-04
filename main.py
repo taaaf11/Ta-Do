@@ -8,7 +8,7 @@
 #
 
 
-from ui_components import TodoApp, TodoInputDialog, SettingsPage, AboutPage
+from ui_components import TodoApp, TodoInputDialog, SettingsPage, HelpPage, AboutPage
 from ui_components.fn import get_saved_theme_color_name, get_saved_theme_mode
 import flet as ft
 
@@ -62,14 +62,22 @@ def main(page: ft.Page):
     # to be vertically center aligned, the solution is to keep the vertical alignment of the
     # home page in a variable and use it when the home page is requested.
     old_page_vertical_alignment = page.vertical_alignment
+    old_page_scroll_state = page.scroll
     
     page.on_keyboard_event = handle_kbd_shortcuts
     
     def navigate_to_page(e):
+        # resetting the different controls' states
+        # remove text resize buttons added when other page
+        # is requested by user after help page
+        page.appbar.actions = []
+        page.scroll = old_page_scroll_state
+        
         selected_page = e.control.selected_index
         if selected_page == 0:
             home_view.visible = True
             settings_view.visible = False
+            help_view.visible = False
             about_view.visible = False
             
             # Read comments above for variable old_page_vertical_alignment
@@ -80,6 +88,7 @@ def main(page: ft.Page):
         elif selected_page == 1:
             home_view.visible = False
             settings_view.visible = True
+            help_view.visible = False
             about_view.visible = False
             
             # Read comments above for variable old_page_vertical_alignment
@@ -90,6 +99,26 @@ def main(page: ft.Page):
         elif selected_page == 2:
             home_view.visible = False
             settings_view.visible = False
+            help_view.visible = True
+            about_view.visible = False
+
+            page.appbar.actions = [
+                ft.IconButton(icon=ft.icons.ADD_SHARP, on_click=lambda _: help_view.inc_size()),
+                ft.IconButton(icon=ft.icons.REMOVE_SHARP, on_click=lambda _: help_view.dec_size())
+            ]
+
+            page.scroll = 'auto'
+            
+            # Read comments above for variable old_page_vertical_alignment
+            page.vertical_alignment = ft.MainAxisAlignment.CENTER
+            
+            # hide the create todo button
+            page.floating_action_button.visible = False
+        
+        elif selected_page == 3:
+            home_view.visible = False
+            settings_view.visible = False
+            help_view.visible = False
             about_view.visible = True
             
             # Read comments above for variable old_page_vertical_alignment
@@ -128,6 +157,11 @@ def main(page: ft.Page):
             label='Settings',
             selected_icon=ft.icons.SETTINGS_SHARP
         ),
+        ft.NavigationDrawerDestination(
+            icon=ft.icons.HELP_OUTLINE_SHARP,
+            label='Help',
+            selected_icon=ft.icons.HELP_SHARP
+        ),
         ft.Divider(thickness=2),
         ft.NavigationDrawerDestination(
             icon=ft.icons.LIGHTBULB_OUTLINE,
@@ -142,11 +176,12 @@ def main(page: ft.Page):
     # in 'default' flet.UserControl class
     home_view = TodoApp(on_scroll=show_hide_create_todo_button)
     settings_view = SettingsPage(visible=False)
+    help_view = HelpPage(visible=False)
     about_view = AboutPage(author_name='Muhammad Altaaf', author_avatar_url='https://www.github.com/taaaf11.png?size=120px',
                            source_code_link=github_repo_link, version_info='2.5.0',
                            visible=False)
 
-    page.add(home_view, settings_view, about_view)
+    page.add(home_view, settings_view, help_view, about_view)
     
     page.on_window_event = adjust_list_size_on_window_resize
     

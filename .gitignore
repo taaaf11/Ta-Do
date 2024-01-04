@@ -1,7 +1,4 @@
 /.venv/
 /.vscode/
-/.idea/
 *__pycache__/
-/todo_data.txt
 /prep*
-/*.docker*
