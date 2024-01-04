@@ -55,6 +55,3 @@ class Todo(ft.Row):
     
     def get_data(self) -> tuple:  # an 'interface' to get values of Todo instance
         return self.checkbox.label, self.checkbox.value
-        
-    def build(self):
-        return self

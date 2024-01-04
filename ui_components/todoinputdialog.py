@@ -32,6 +32,3 @@ class TodoInputDialog(ft.AlertDialog):
         # but it requires an event in its parameters        
         self.open = False
         self.page.update()
-
-    def build(self):
-        return self
