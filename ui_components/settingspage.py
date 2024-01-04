@@ -72,6 +72,3 @@ class SettingsPage(ft.Column):
         theme_mode_file = open(f'{get_data_storage_path()}/theme_mode_pref.txt', 'w')
         theme_mode_file.write(self.page.theme_mode.value)
         theme_mode_file.close()
-    
-    def build(self):
-        return self

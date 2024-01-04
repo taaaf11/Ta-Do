@@ -7,6 +7,3 @@ class TextInput(ft.TextField):
         self.border_radius = 20
         self.hint_text = 'I am gonna do...'
         self.autofocus = True  # user should not need to tap the text field
-    
-    def build(self):
-        return self

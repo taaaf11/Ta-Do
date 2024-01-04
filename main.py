@@ -3,7 +3,7 @@
 # Author: Muhammad Altaaf
 # Contact email: taafuuu@gmail.com
 # Description: A simple to-do list app.
-# Version: 2.5.0
+# Version: 3.0.0
 # Source code: 'https://www.github.com/taaaf11/Ta-Do'
 #
 
@@ -178,7 +178,7 @@ def main(page: ft.Page):
     settings_view = SettingsPage(visible=False)
     help_view = HelpPage(visible=False)
     about_view = AboutPage(author_name='Muhammad Altaaf', author_avatar_url='https://www.github.com/taaaf11.png?size=120px',
-                           source_code_link=github_repo_link, version_info='2.5.0',
+                           source_code_link=github_repo_link, version_info='3.0.0',
                            visible=False)
 
     page.add(home_view, settings_view, help_view, about_view)

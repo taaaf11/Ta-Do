@@ -89,6 +89,3 @@ class TodoList(ft.ListView):
             else:  # is false
                 file.write(f'0/{content}\n')
         file.close()
-
-    def build(self):
-        return self

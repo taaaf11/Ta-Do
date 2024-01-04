@@ -31,6 +31,3 @@ class AboutPage(ft.Column):
             )
         self.alignment = ft.MainAxisAlignment.CENTER
         self.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-    
-    def build(self):
-        return self
