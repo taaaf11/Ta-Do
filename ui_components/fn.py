@@ -1,14 +1,14 @@
 import os, platform, flet as ft
 
 def get_data_storage_path() -> str:
-        current_system = platform.system()
-        if current_system == 'Windows':
-            storage_path = os.path.join(os.environ['USERPROFILE'], 'AppData', 'Local', 'Ta-Do')
-        elif current_system == 'Linux':
-            storage_path = os.path.join(os.environ['HOME'], '.local', 'share', 'Ta-Do')
-        elif current_system == 'Darwin':  # mac os
-            storage_path = os.path.join(os.environ['HOME'], 'Library', 'Ta-Do')
-        return storage_path
+    current_system = platform.system()
+    if current_system == 'Windows':
+        storage_path = os.path.join(os.environ['USERPROFILE'], 'AppData', 'Local', 'Ta-Do')
+    elif current_system == 'Linux':
+        storage_path = os.path.join(os.environ['HOME'], '.local', 'share', 'Ta-Do')
+    elif current_system == 'Darwin':  # mac os
+        storage_path = os.path.join(os.environ['HOME'], 'Library', 'Ta-Do')
+    return storage_path
 
 def get_saved_theme_color_name() -> str:
     theme_color_data_path = f'{get_data_storage_path()}/theme_color_pref.txt'

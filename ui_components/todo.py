@@ -11,7 +11,7 @@ class Todo(ft.Row):
         self.edit_button = ft.IconButton(icon=ft.icons.EDIT_SHARP, on_click=self.edit,
                                     visible=True, icon_color=ft.colors.GREY)
         
-        self.delete_button = ft.IconButton(icon=ft.icons.DELETE_OUTLINE, on_click=self.delete,
+        self.delete_button = ft.IconButton(icon=ft.icons.DELETE_OUTLINE, on_click=lambda _:self.delete(),
                                     visible=False, icon_color=ft.colors.GREY)
         
         if self.checkbox.value:  # when read from file, checkmark-ed todo's don't show the
@@ -33,7 +33,7 @@ class Todo(ft.Row):
         self.update()
         self.page.controls[0].save_data()  # read comments in the function defined below
     
-    def delete(self, e) -> None:
+    def delete(self) -> None:
         # at self.page.controls[0], TodoApp() instance rests.
         # Calling its method del_todo to delete a todo
         # see 'page.add' (last) lines of main.py

@@ -1,4 +1,7 @@
-/.venv/
-/.vscode/
-*__pycache__/
-/prep*
+.venv/
+.vscode/
+build/
+dist/
+__pycache__/
+*.spec
+prep*

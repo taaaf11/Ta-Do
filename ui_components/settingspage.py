@@ -15,6 +15,7 @@ class SettingsPage(ft.Column):
             self.theme_mode_button.icon = ft.icons.DARK_MODE_SHARP
             self.theme_mode_button.text = 'Dark mode'
         self.delete_data_button = ft.TextButton(icon=ft.icons.DELETE_FOREVER_SHARP, text='Delete app data', on_click=self.delete_app_data)
+        # self.prep_for_uninstall = ft.TextButton(icon=ft.icons.DELETE_FOREVER_SHARP, text='Delete app data (for uninstall)', on_click=self.delete_app_data)
         self.theme_color_dropdown = ThemeColourDropdown([
             'Red',
             'Pink',
@@ -59,7 +60,10 @@ class SettingsPage(ft.Column):
         self.save_theme_mode()
     
     def delete_app_data(self, e) -> None:
-        #  app data rests in 'Ta-Do_data/todo_data.txt' file.
+        # goes like this:
+        # home_view (TodoApp) -> (TodoList) -> Controls in TodoList
+        for todo in self.page.controls[0].controls[0].controls.copy():
+            todo.delete()
         app_data_dir = get_data_storage_path()
         try:  
             for match in glob.glob(f'{app_data_dir}/*.txt'):
@@ -69,6 +73,9 @@ class SettingsPage(ft.Column):
             return
     
     def save_theme_mode(self):
+        path = get_data_storage_path()
+        if not os.path.isdir(path):
+            os.mkdir(path)
         theme_mode_file = open(f'{get_data_storage_path()}/theme_mode_pref.txt', 'w')
         theme_mode_file.write(self.page.theme_mode.value)
         theme_mode_file.close()

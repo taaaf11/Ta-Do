@@ -4,7 +4,8 @@
 # Contact email: taafuuu@gmail.com
 # Description: A simple to-do list app.
 # Version: 3.0.0
-# Source code: 'https://www.github.com/taaaf11/Ta-Do'
+# Source code: 'https://www.github.com/taaaf11/Ta-Do
+# Source code license: MIT License
 #
 
 
@@ -31,7 +32,7 @@ def main(page: ft.Page):
     page.dialog = todo_dialog
     
     def handle_kbd_shortcuts(e: ft.KeyboardEvent):
-        # when escape key is pressed, the dialog dismisses
+        # when escape key is pressed, the new/edit todo dialog dismisses
         # in addition, we want the value to be empty, so that a
         # todo is not added on dialog dismiss
         if e.key == 'Escape':
@@ -62,9 +63,11 @@ def main(page: ft.Page):
     # to be vertically center aligned, the solution is to keep the vertical alignment of the
     # home page in a variable and use it when the home page is requested.
     old_page_vertical_alignment = page.vertical_alignment
-    old_page_scroll_state = page.scroll
     
-    page.on_keyboard_event = handle_kbd_shortcuts
+    # page.scroll = 'auto' is done when help_view is requested by the user
+    # saving the old state of page.scroll to be used later
+    # helps in keeping the intended alignment of content on different pages
+    old_page_scroll_state = page.scroll
     
     def navigate_to_page(e):
         # resetting the different controls' states
@@ -102,6 +105,7 @@ def main(page: ft.Page):
             help_view.visible = True
             about_view.visible = False
 
+            # add buttons to increase or decrease the size of help text
             page.appbar.actions = [
                 ft.IconButton(icon=ft.icons.ADD_SHARP, on_click=lambda _: help_view.inc_size()),
                 ft.IconButton(icon=ft.icons.REMOVE_SHARP, on_click=lambda _: help_view.dec_size())
@@ -164,9 +168,9 @@ def main(page: ft.Page):
         ),
         ft.Divider(thickness=2),
         ft.NavigationDrawerDestination(
-            icon=ft.icons.LIGHTBULB_OUTLINE,
+            icon=ft.icons.INFO_OUTLINE,
             label='About',
-            selected_icon=ft.icons.LIGHTBULB_SHARP
+            selected_icon=ft.icons.INFO_SHARP
         )
     ], selected_index=0, on_change=navigate_to_page)
     
@@ -184,6 +188,7 @@ def main(page: ft.Page):
     page.add(home_view, settings_view, help_view, about_view)
     
     page.on_window_event = adjust_list_size_on_window_resize
+    page.on_keyboard_event = handle_kbd_shortcuts
     
     # get data from file, couldn't do any better
     home_view.todos.read_from_file()

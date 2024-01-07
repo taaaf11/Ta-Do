@@ -1,6 +1,8 @@
+from .fn import get_data_storage_path
 from .todolist import TodoList
 from .todo import Todo
 import flet as ft
+import os
 
 
 class TodoApp(ft.UserControl):
@@ -9,6 +11,9 @@ class TodoApp(ft.UserControl):
         self.todos = TodoList(on_scroll=on_scroll)
 
     def add_todo(self, todo: Todo) -> None:
+        path = get_data_storage_path()
+        if not os.path.isdir(path):
+            os.mkdir(path)
         self.todos.add_todo(todo)  # auto saves
         self.update()
     

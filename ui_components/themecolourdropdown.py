@@ -1,5 +1,6 @@
 from .fn import get_data_storage_path
 import flet as ft
+import os
 
 
 class ThemeColourDropdown(ft.Dropdown):
@@ -14,6 +15,9 @@ class ThemeColourDropdown(ft.Dropdown):
             )
     
     def save_color_option(self, e):
-        file = open(f'{get_data_storage_path()}/theme_color_pref.txt', 'w')
+        path = get_data_storage_path()
+        if not os.path.isdir(path):
+            os.mkdir(path)
+        file = open(f'{path}/theme_color_pref.txt', 'w')
         file.write(self.value)
         file.close()
